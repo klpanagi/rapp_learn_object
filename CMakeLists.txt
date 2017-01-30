@@ -2,17 +2,20 @@ PROJECT(RAPP_CALIBRATE_CAMERA)
 
 cmake_minimum_required(VERSION 2.8.3)
 
-find_library(OPENCV_LIBRARIES NAMES opencv_highgui)
-if (OPENCV_LIBRARIES)
-    message(STATUS "found OpenCV")
-elseif(!OPENCV_LIBRARIES)
-    message(FATAL "missing OpenCV")
-endif()
-
+find_package(OpenCV REQUIRED)
 find_package(Rapp REQUIRED)
 find_package(RappRobots REQUIRED)
 find_package(Boost COMPONENTS system thread random REQUIRED)
 find_package(Threads REQUIRED)
+
+	       
+find_library(RAPP_ROBOT_COMMUNICATION NAMES rapp_robot_communication)
+find_library(RAPP_ROBOT_INFO NAMES rapp_robot_info) 
+find_library(RAPP_ROBOT_LOCALIZATION NAMES rapp_robot_localization)
+find_library(RAPP_ROBOT_NAVIGATION NAMES rapp_robot_navigation)
+find_library(RAPP_ROBOT_VISION NAMES rapp_robot_vision)
+
+find_library(RAPP NAMES rapp)
 
 include_directories(${RAPP_INCLUDE_DIRS}/rapp)
 
@@ -23,9 +26,14 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++1y")
 
 add_executable(learn_object main.cpp)
 
-set(RAPP_LIBRARIES ${RAPP_LIBRARY} 
+set(RAPP_LIBRARIES ${RAPP} 
+	           ${RAPP_ROBOT_COMMUNICATION}
+		   ${RAPP_ROBOT_INFO}
+		   ${RAPP_ROBOT_LOCALIZATION}
+		   ${RAPP_ROBOT_NAVIGATION}
+		   ${RAPP_ROBOT_VISION}
                    ${OPENSSL_LIBRARIES} 
 		   ${Boost_LIBRARIES}
 		   ${CMAKE_THREAD_LIBS_INIT})
 
-target_link_libraries(learn_object ${RAPP_LIBRARIES} ${OPENCV_LIBRARIES})
+target_link_libraries(learn_object ${RAPP_LIBRARIES} ${OpenCV_LIBS})
