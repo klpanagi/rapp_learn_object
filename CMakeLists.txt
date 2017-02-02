@@ -3,6 +3,11 @@ PROJECT(RAPP_CALIBRATE_CAMERA)
 cmake_minimum_required(VERSION 2.8.3)
 
 find_library(OPENCV NAMES opencv_highgui HINTS /usr/lib /usr/local/lib)
+if (${OPENCV})
+    message(STATUS "found OpenCV")
+elseif(!${OPENCV})
+    message(FATAL "missing OpenCV")
+endif()
 
 find_package(Rapp REQUIRED)
 find_package(RappRobots REQUIRED)
@@ -14,7 +19,6 @@ include_directories(${RAPP_INCLUDE_DIRS}/rapp)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${Rapp_DIR} ${RappRobots_DIR})
 include(RappMacros)
 
-setup_rapp()
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++1y")
 
 add_executable(learn_object main.cpp)
