@@ -9,7 +9,6 @@ platform:
 api: 0.6.0
 
 install:
-    - sudo apt-get install -y libboost-all-dev 
     - sudo apt-get install -y libopencv-dev
 
 build:
