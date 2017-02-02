@@ -6,7 +6,7 @@ find_package(Rapp REQUIRED)
 find_package(RappRobots REQUIRED)
 find_package(Boost COMPONENTS system thread random REQUIRED)
 find_package(Threads REQUIRED)
-find_package(OpenCV REQUIRED)
+
 find_library(OPENCV NAMES opencv_highgui HINTS /usr/lib /usr/local/lib)
 
 include_directories(${RAPP_INCLUDE_DIRS}/rapp)
