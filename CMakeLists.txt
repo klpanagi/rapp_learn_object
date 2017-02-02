@@ -7,7 +7,7 @@ find_package(RappRobots REQUIRED)
 find_package(Boost COMPONENTS system thread random REQUIRED)
 find_package(Threads REQUIRED)
 find_package(OpenCV REQUIRED)
-find_package(OpenSSL REQUIRED)
+find_library(OPENCV NAMES opencv_highgui HINTS /usr/lib /usr/local/lib)
 
 include_directories(${RAPP_INCLUDE_DIRS}/rapp)
 
@@ -21,8 +21,8 @@ add_executable(LearnObject main.cpp)
 
 set(RAPP_LIBRARIES ${RAPP_LIBRARY} 
                    ${OPENSSL_LIBRARIES} 
-				   ${Boost_LIBRARIES}
-				   ${CMAKE_THREAD_LIBS_INIT})
+		   ${Boost_LIBRARIES}
+		   ${CMAKE_THREAD_LIBS_INIT})
 
 target_link_libraries(object_recognition ${RAPP_LIBRARIES}
-                                         ${OpenCV_LIBS})
+                                         ${OPENCV})
