@@ -3,9 +3,9 @@ PROJECT(RAPP_CALIBRATE_CAMERA)
 cmake_minimum_required(VERSION 2.8.3)
 
 find_library(OPENCV_LIBRARIES NAMES opencv_highgui HINTS /usr/lib /usr/local/lib)
-if (${OPENCV_LIBRARIES})
+if (OPENCV_LIBRARIES)
     message(STATUS "found OpenCV")
-elseif(!${OPENCV_LIBRARIES})
+elseif(!OPENCV_LIBRARIES)
     message(FATAL "missing OpenCV")
 endif()
 
