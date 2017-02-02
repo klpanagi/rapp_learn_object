@@ -17,12 +17,11 @@ include(RappMacros)
 setup_rapp()
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++1y")
 
-add_executable(LearnObject main.cpp)
+add_executable(learn_object main.cpp)
 
 set(RAPP_LIBRARIES ${RAPP_LIBRARY} 
                    ${OPENSSL_LIBRARIES} 
 		   ${Boost_LIBRARIES}
 		   ${CMAKE_THREAD_LIBS_INIT})
 
-target_link_libraries(object_recognition ${RAPP_LIBRARIES}
-                                         ${OPENCV})
+target_link_libraries(learn_object ${RAPP_LIBRARIES} ${OPENCV})
