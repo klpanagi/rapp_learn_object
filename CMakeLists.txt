@@ -8,6 +8,10 @@ find_package(RappRobots REQUIRED)
 find_package(Boost COMPONENTS system thread random REQUIRED)
 find_package(Threads REQUIRED)
 
+add_executable(learn_object main.cpp)
+
+set_target_properties(learn_object PROPERTIES LINK_SEARCH_START_STATIC 1)
+set(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
 	       
 find_library(RAPP_ROBOT_COMMUNICATION NAMES rapp_robot_communication)
 find_library(RAPP_ROBOT_INFO NAMES rapp_robot_info) 
@@ -26,7 +30,6 @@ include(RappMacros)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++1y")
 
-add_executable(learn_object main.cpp)
 
 set(RAPP_LIBRARIES ${RAPP_LIBRARY}
 	           ${RAPP_ROBOT_COMMUNICATION}
@@ -39,3 +42,6 @@ set(RAPP_LIBRARIES ${RAPP_LIBRARY}
 		   ${CMAKE_THREAD_LIBS_INIT})
 
 target_link_libraries(learn_object ${RAPP_LIBRARIES} ${OpenCV_LIBS})
+
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS}-static")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -Wall -fPIC -Os -s -O2 -march=atom -mtune=atom -mfpmath=sse")
