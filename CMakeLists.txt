@@ -15,7 +15,7 @@ find_library(RAPP_ROBOT_LOCALIZATION NAMES rapp_robot_localization)
 find_library(RAPP_ROBOT_NAVIGATION NAMES rapp_robot_navigation)
 find_library(RAPP_ROBOT_VISION NAMES rapp_robot_vision)
 
-#%find_library(RAPP NAMES rapp)
+find_library(RAPP NAMES rapp)
 
 include_directories(${RAPP_INCLUDE_DIRS}/rapp)
 
