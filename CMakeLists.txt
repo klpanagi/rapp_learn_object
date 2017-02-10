@@ -15,11 +15,11 @@ find_library(RAPP_ROBOT_LOCALIZATION NAMES rapp_robot_localization)
 find_library(RAPP_ROBOT_NAVIGATION NAMES rapp_robot_navigation)
 find_library(RAPP_ROBOT_VISION NAMES rapp_robot_vision)
 
-find_library(RAPP NAMES rapp)
+find_library(RAPP_LIBRARY NAMES rapp REQUIRED)
 
 include_directories(${RAPP_INCLUDE_DIRS}/rapp)
 
-message(STATUS "libraries: ${RAPP_STATIC_LIBRARIES}")
+message(STATUS "libraries: ${RAPP_LIBRARY}")
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${Rapp_DIR} ${RappRobots_DIR})
 include(RappMacros)
@@ -28,7 +28,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++1y")
 
 add_executable(learn_object main.cpp)
 
-set(RAPP_LIBRARIES ${RAPP_STATIC_LIBRARIES}
+set(RAPP_LIBRARIES ${RAPP_LIBRARY}
 	           ${RAPP_ROBOT_COMMUNICATION}
 		   ${RAPP_ROBOT_INFO}
 		   ${RAPP_ROBOT_LOCALIZATION}
