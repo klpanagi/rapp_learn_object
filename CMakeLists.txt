@@ -23,6 +23,8 @@ include_directories(${RAPP_INCLUDE_DIRS}/rapp)
 message(STATUS "libraries: ${RAPP_LIBRARY}")
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${Rapp_DIR} ${RappRobots_DIR})
+set(BUILD_SHARED_LIBS OFF)
+
 include(RappMacros)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++1y")
