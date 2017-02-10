@@ -9,9 +9,6 @@ find_package(Boost COMPONENTS system thread random REQUIRED)
 find_package(Threads REQUIRED)
 
 add_executable(learn_object main.cpp)
-
-set_target_properties(learn_object PROPERTIES LINK_SEARCH_START_STATIC 1)
-set(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
 	       
 find_library(RAPP_ROBOT_COMMUNICATION NAMES rapp_robot_communication)
 find_library(RAPP_ROBOT_INFO NAMES rapp_robot_info) 
